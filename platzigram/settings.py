@@ -87,7 +87,7 @@ WSGI_APPLICATION = 'platzigram.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASE = 1;
+DATABASE = 2;
 
 if DEBUG and (DATABASE==1):
     # user sqlite database
@@ -97,12 +97,13 @@ if DEBUG and (DATABASE==1):
             'NAME': BASE_DIR / 'mydatabase',
         }
     }
+
 elif DEBUG and (DATABASE == 2):
     # User local postgres db
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': "nicolas",
+            'NAME': "platzi",
             "USER":"postgres",
             "PASSWORD":"123456",
             "HOST":"localhost",
