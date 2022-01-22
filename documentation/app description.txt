@@ -1,0 +1,10 @@
+Expense tracker app
+
+This is a basic expense tracker app. That will get more complex as we go
+
+
+Its main features in release 1.0 include:
+
+- Add new entries in both income and expenses
+- Visualize the income and expense logs
+- A database including category, description, date and amount
