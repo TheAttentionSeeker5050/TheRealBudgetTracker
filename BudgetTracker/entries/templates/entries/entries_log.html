@@ -1,0 +1,57 @@
+{% extends "parent.html" %}
+
+<!-- the title -->
+{% block title %}
+    <title>Entries log</title>
+{% endblock %}
+
+<!-- the main content -->
+{% block content %}
+
+<div class="container-md">
+    <h1 class="display-2">Entries log</h1>
+
+    <table class="table justify-content-md-center table-striped table-hover">
+        
+        <thead>
+          <tr>
+            <th scope="col">Type</th>
+            <th scope="col">Description</th>
+            <th scope="col">Category</th>
+            <th scope="col">Date</th>
+            <th scope="col">Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for entry in entries %}
+
+            <tr>
+                <th scope="row">
+                    {{entry.entry_type}}
+                </th>
+                <td>
+                    <a href="/entries/edit/{{entry.id}}">
+                        {{entry.description}}
+                    </a>
+                </td>
+                <td>                
+                    {{entry.category}}
+                </td>
+                <td>              
+                    {{entry.date}}
+                </td>
+                <td>              
+                    {{entry.amount}}
+                </td>
+            </tr>
+        {% endfor %}
+          
+        </tbody>
+    </table>
+
+
+
+</div>
+
+    
+{% endblock %}

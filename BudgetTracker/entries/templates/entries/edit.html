@@ -2,20 +2,21 @@
 
 <!-- the title -->
 {% block title %}
-    <title>New entry</title>
+    <title>Edit entry</title>
 {% endblock %}
 
 <!-- the main content -->
 {% block content %}
 
 <div class="container-sm">
-    <h1 class="display-2">Add a new entry</h1>
+    <h1 class="display-2">Edit</h1>
     
     <br>
     <!-- form content -->
     <form method="post" >
         {% csrf_token %}
         
+
         {{ form.as_p }}
         
             

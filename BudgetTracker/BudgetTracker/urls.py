@@ -21,4 +21,11 @@ from entries import views as entries_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("entries/new", entries_views.new_entry_view, name="new_entry"),
+    path("entries", entries_views.entry_log_view, name="entries_log"),
+    path("entries/summary", entries_views.summary_view, name="summary"),
+    path("entries/edit/<pk>", entries_views.EntryEditView.as_view(), name="edit"),
+
+
+
+
 ]
