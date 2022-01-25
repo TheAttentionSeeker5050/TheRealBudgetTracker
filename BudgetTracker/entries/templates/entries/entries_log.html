@@ -20,17 +20,18 @@
             <th scope="col">Category</th>
             <th scope="col">Date</th>
             <th scope="col">Amount</th>
+            <th scope="col">Options</th>
           </tr>
         </thead>
         <tbody>
-        {% for entry in entries %}
+        {% for entry in object_list %}
 
             <tr>
                 <th scope="row">
                     {{entry.entry_type}}
                 </th>
                 <td>
-                    <a href="/entries/edit/{{entry.id}}">
+                    <a href="/entries/edit/{{entry.id}}" style="text-decoration:none; font-weight:600; color:black">
                         {{entry.description}}
                     </a>
                 </td>
@@ -43,12 +44,62 @@
                 <td>              
                     {{entry.amount}}
                 </td>
+                <td>
+                    <a href="{% url 'delete' entry.id %} ">
+                        <img src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/30/000000/external-delete-multimedia-kiranshastry-solid-kiranshastry.png"/>
+                    </a>
+                    <a href=" {% url 'edit' entry.id %} ">
+                        <img src="https://img.icons8.com/ios-glyphs/30/000000/edit--v4.png"/>
+                    </a>
+                </td>
             </tr>
         {% endfor %}
           
         </tbody>
     </table>
 
+    <div id="page-content-header">
+        {% if previous_month %}
+
+        <div class="float-left">
+            {% if object_list.first.date.month == 1 %}
+                <a role="button" class="btn btn-primary" href="/entries/{{object_list.first.date.year|add:'-1'}}/12"> << {{object_list.first.date.year|add:"-1"}} / 12</a>
+            
+            {% else %}
+                <a  role="button" class="btn btn-primary" href="/entries/{{object_list.first.date.year}}/{{object_list.first.date.month}}"> << {{object_list.first.date.year}} / {{object_list.first.date.month|add:"-1"}} </a>
+            {% endif %}
+        </div>
+        {% endif %}
+
+        {% if next_month %}
+        <div class="float-right">
+            {% if object_list.first.date.month == 12 %}
+                <a role="button" class="btn btn-primary" href="/entries/{{object_list.first.date.year|add:'+1'}}/1"> {{object_list.first.date.year|add:'1'}} / 1 >></a>
+            
+            {% else %}
+                <a  role="button" class="btn btn-primary" href="/entries/{{object_list.first.date.year}}/{{object_list.first.date.month|add:+1}}"> {{object_list.first.date.year}} {{object_list.first.date.month|add:"1"}} >> </a>
+            {% endif %}
+        </div>
+        {% endif %}
+
+    </div>
+
+    <!-- <a href="/entries/{{previous_year}}/{{previous_month}}">
+        <button>
+            {% if previous_month %}
+            {{ previous_month|date:"F Y" }}
+            {% endif %}
+        </button>
+    </a> 
+
+    <a href="/next_month_log">
+        <button>
+            {% if next_month %}
+            {{ next_month|date:"F Y" }}
+            {% endif %}
+        </button>
+    </a>
+         -->
 
 
 </div>

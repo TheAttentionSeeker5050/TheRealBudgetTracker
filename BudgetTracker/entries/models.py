@@ -3,8 +3,8 @@ from django.urls import reverse
 
 # choice variables
 ENTRY_TYPE_CHOICES = [
-    ("income", "Income"),
-    ("expense", "Expense")
+    ("Income", "Income"),
+    ("Expense", "Expense")
 ]
 
 CATEGORY_CHOICES = [
