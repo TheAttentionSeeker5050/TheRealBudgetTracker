@@ -39,29 +39,35 @@
         </div>
         
       </div>
-      
-      <div id="page-content-header">
-    
-        <div class="previous_month_button">
+      <div class="month_change_container ">
+        <div class="previous_month_button_container ">
             {% if month == 1 %}
-                <a role="button" class="btn btn-primary" href="/entries/summary/{{year|add:'-1'}}/12"> << {{year|add:"-1"}} / 12</a>
-            
+                <a role="button" href="/entries/summary/{{year|add:'-1'}}/12">
+                    <button class="change_month_button"> << {{year|add:"-1"}} / 12</button>
+                </a>
+                
             {% else %}
-                <a  role="button" class="btn btn-primary" href="/entries/summary/{{year}}/{{month|add:'-1'}}"> << {{year}} / {{month|add:"-1"}} </a>
+                <a  role="button"  href="/entries/summary/{{year}}/{{month|add:'-1'}}">
+                    <button class="change_month_button"> << {{year}} / {{month|add:"-1"}} </button>
+                </a>
             {% endif %}
+
         </div>
-    
-        <div class="next_month_button">
+
+        <div class="next_month_button_container ">
             {% if month == 12 %}
-                <a role="button" class="btn btn-primary" href="/entries/summary/{{year|add:'+1'}}/1"> {{year|add:'1'}} / 1 >></a>
+                <a role="button"  href="/entries/summary/{{year|add:'+1'}}/1">
+                    <button class="change_month_button"> {{year|add:'1'}} / 1 >></button>
+                </a>
             
             {% else %}
-                <a  role="button" class="btn btn-primary" href="/entries/summary/{{year}}/{{month|add:+1}}"> {{year}} / {{month|add:"1"}} >> </a>
+                <a  role="button"  href="/entries/summary/{{year}}/{{month|add:+1}}">
+                    <button class="change_month_button"> {{year}} / {{month|add:"1"}} >> </button>
+                </a>
             {% endif %}
-            <!-- object_list.first.date. -->
         </div>
-    
-      </div>
+
+    </div>
 
   </div>
 

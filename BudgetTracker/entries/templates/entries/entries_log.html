@@ -13,8 +13,46 @@
 <div class="my_log_container">
     <h1 class="display-4 display_mobile">Entries log</h1>
 
-    <table class="table  table-striped table-hover table_log">
+    <div class="filters_container">
+        <h3 class="filters_title">Filters</h3>
+
         
+
+        <div class="dropdown filter_by_type_dropdown_container "> 
+            <button
+            style="
+            color: white  ; 
+            background-color: #0077B6 ;
+            font-size: 1.3rem ;
+            border: none;" 
+            id="dropdown_nav_button" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+             By type
+            </button>
+            <ul style="background-color: #0077B6;" class="dropdown-menu " aria-labelledby="dropdownMenuButton1">
+                <li id="income_filter_button" class=""><a style="color: white; " class="dropdown-item" onclick="filter_by_type('Income')">Income</a></li>
+                <li id="expense_filter_button" class=""><a style="color: white; " class="dropdown-item" onclick="filter_by_type('Expense')">Expense</a></li>
+                <li class=""><a style="color: white; " class="dropdown-item" onclick="filter_by_type('All')">Display all</a></li>
+
+            </ul>
+          </div>
+
+        <div class="search_box_container">
+            <label for="searchbox">Search: </label> <br>
+            <input 
+            type="search" 
+            oninput="liveSearch()" 
+            id="searchbox" 
+            >
+        </div>
+
+        <script src="{% static 'javascript/filter_by_type.js'%}"></script>
+        <script src="{% static 'javascript/liveSearch.js'%}"></script>
+
+
+
+    </div>
+
+    <table class="table  table-striped table-hover table_log">
         <thead class="mobile_hidden">
           <tr>
             <th scope="col" class="small">Type</th>
@@ -28,24 +66,31 @@
         <tbody>
         {% for entry in object_list %}
 
-            <tr>
-                <th scope="row">
-                    <p class="bold small">{{entry.entry_type}}</p>
-                    <p class="mobile_only small non_bold">{{entry.category}}</p>
-                </th>
+        <!-- we give a class depending if it is an income or an expense -->
+            {% if entry.entry_type == 'Income' %}
+            <tr class="table_row Income">
+            {% elif entry.entry_type == 'Expense' %}
+            <tr class="table_row Expense">
+            {% else %}
+            <tr class="table_row Expense">
+            {% endif %}
+                <td scope="row">
+                    <p class="bold small entry_type">{{entry.entry_type}}</p>
+                    <p class="mobile_only small non_bold entry_category">{{entry.category}}</p>
+                </td>
                 <td>
                     <a href="/entries/edit/{{entry.id}}" class="bold black_link" style="text-decoration:none;">
-                        <p class="small non_bold">{{entry.description}}</p>
+                        <p class="small non_bold entry_description" >{{entry.description}}</p>
                     </a>
-                    <p class="mobile_only small non_bold"> {{entry.date}} </p>
+                    <p class="mobile_only small non_bold entry_date"> {{entry.date}} </p>
                 </td>
-                <td class="mobile_hidden small non_bold">                
+                <td class="mobile_hidden small non_bold entry_category">                
                     {{entry.category}}
                 </td>
-                <td class="mobile_hidden small non_bold">              
+                <td class="mobile_hidden small non_bold entry_date">              
                     {{entry.date}}
                 </td>
-                <td class="small non_bold centered_vertically">              
+                <td class="small non_bold centered_vertically entry_amount">              
                     {{entry.amount}}
                 </td>
                 <td>
@@ -85,7 +130,7 @@
             
             {% else %}
                 <a  role="button"  href="/entries/{{year}}/{{month|add:+1}}">
-                    <button class="change_month_button"> {{year}} {{month|add:"1"}} >> </button>
+                    <button class="change_month_button"> {{year}} / {{month|add:"1"}} >> </button>
                 </a>
             {% endif %}
         </div>

@@ -25,40 +25,35 @@
 
 
     {% endblock %} -->
-
+    
     <header >
-        <ul class="nav justify-content-center">
-            <li class="nav-item ">
+        <ul class="nav_list">
+            <li class="nav_list--item ">
               <img id="logo" src="{% static 'img/logo.png' %}" alt="Logo">
-              
-
-
             </li>
-            <li class="nav-item ">
-              <a class="nav-link" href="/entries/new" style="color: white; font-size:x-large;">Add</a>
+            <li class="nav_list--item ">
+              <a class="" href="/entries/new" style="color: white; ">Add</a>
             </li>
-            <li class="nav-item ">
-              <a class="nav-link" href="/entries" style="color: white; font-size:x-large;">History</a>
+            <li class="nav_list--item ">
+              <a class="" href="/entries" style="color: white; ">History</a>
             </li>
-            <div class="dropdown"> 
+            <div class="dropdown filter_by_type_dropdown nav_list--item "> 
               <button
               style="
               color: white  ; 
-              font-size:x-large ;
               background-color: transparent ;
+              font-size: 1.3rem ;
               border: none;" 
               id="dropdown_nav_button" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                 Other options
               </button>
               <ul style="background-color: #0077B6;" class="dropdown-menu " aria-labelledby="dropdownMenuButton1">
-                <li><a style="color: white; font-size:x-large ;" class="dropdown-item" href="/entries/summary">Summary</a></li>
-                <li><a style="color: white; font-size:x-large ;" class="dropdown-item" href="#">Another action</a></li>
-                <li><a style="color: white; font-size:x-large ;" class="dropdown-item" href="#">Something else here</a></li>
+                <li><a style="color: white; " class="dropdown-item" href="/entries/summary">Summary</a></li>
+                <li><a style="color: white; " class="dropdown-item" href="#">Another action</a></li>
+                <li><a style="color: white; " class="dropdown-item" href="#">Something else here</a></li>
               </ul>
             </div>
-            <!-- <li class="nav-item ">
-              <a class="nav-link" href="/entries/summary" style="color: white; font-size:x-large;">Summary</a>
-            </li> -->
+            
           </ul>
         
     
