@@ -9,7 +9,7 @@
 {% block content %}
 
 <div class="container-md justify-content-md-center">
-    <h2>Summary</h2>
+    <h2 class="display-2 display_mobile">Summary for {{month}}-{{year}}</h2>
     <div class="row justify-content-md-center">
       <div class="col justify-content-md-left display-6">
         Income
@@ -39,7 +39,32 @@
         </div>
         
       </div>
+      
+      <div id="page-content-header">
+    
+        <div class="previous_month_button">
+            {% if month == 1 %}
+                <a role="button" class="btn btn-primary" href="/entries/summary/{{year|add:'-1'}}/12"> << {{year|add:"-1"}} / 12</a>
+            
+            {% else %}
+                <a  role="button" class="btn btn-primary" href="/entries/summary/{{year}}/{{month|add:'-1'}}"> << {{year}} / {{month|add:"-1"}} </a>
+            {% endif %}
+        </div>
+    
+        <div class="next_month_button">
+            {% if month == 12 %}
+                <a role="button" class="btn btn-primary" href="/entries/summary/{{year|add:'+1'}}/1"> {{year|add:'1'}} / 1 >></a>
+            
+            {% else %}
+                <a  role="button" class="btn btn-primary" href="/entries/summary/{{year}}/{{month|add:+1}}"> {{year}} / {{month|add:"1"}} >> </a>
+            {% endif %}
+            <!-- object_list.first.date. -->
+        </div>
+    
+      </div>
+
   </div>
 
-    
+  
+
 {% endblock %}

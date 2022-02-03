@@ -1,4 +1,6 @@
 {% extends "parent.html" %}
+{% load static %}
+
 
 <!-- the title -->
 {% block title %}
@@ -8,19 +10,19 @@
 <!-- the main content -->
 {% block content %}
 
-<div class="container-md">
-    <h1 class="display-2">Entries log</h1>
+<div class="my_log_container">
+    <h1 class="display-4 display_mobile">Entries log</h1>
 
-    <table class="table justify-content-md-center table-striped table-hover">
+    <table class="table  table-striped table-hover table_log">
         
-        <thead>
+        <thead class="mobile_hidden">
           <tr>
-            <th scope="col">Type</th>
-            <th scope="col">Description</th>
-            <th scope="col">Category</th>
-            <th scope="col">Date</th>
-            <th scope="col">Amount</th>
-            <th scope="col">Options</th>
+            <th scope="col" class="small">Type</th>
+            <th scope="col" class="small">Description</th>
+            <th scope="col" class="mobile_hidden small">Category</th>
+            <th scope="col" class="mobile_hidden small">Date</th>
+            <th scope="col" class="small">Amount</th>
+            <th scope="col" class="small">Options</th>
           </tr>
         </thead>
         <tbody>
@@ -28,20 +30,22 @@
 
             <tr>
                 <th scope="row">
-                    {{entry.entry_type}}
+                    <p class="bold small">{{entry.entry_type}}</p>
+                    <p class="mobile_only small non_bold">{{entry.category}}</p>
                 </th>
                 <td>
-                    <a href="/entries/edit/{{entry.id}}" style="text-decoration:none; font-weight:600; color:black">
-                        {{entry.description}}
+                    <a href="/entries/edit/{{entry.id}}" class="bold black_link" style="text-decoration:none;">
+                        <p class="small non_bold">{{entry.description}}</p>
                     </a>
+                    <p class="mobile_only small non_bold"> {{entry.date}} </p>
                 </td>
-                <td>                
+                <td class="mobile_hidden small non_bold">                
                     {{entry.category}}
                 </td>
-                <td>              
+                <td class="mobile_hidden small non_bold">              
                     {{entry.date}}
                 </td>
-                <td>              
+                <td class="small non_bold centered_vertically">              
                     {{entry.amount}}
                 </td>
                 <td>
@@ -58,48 +62,36 @@
         </tbody>
     </table>
 
-    <div id="page-content-header">
-        {% if previous_month %}
+    <div class="month_change_container ">
+        <div class="previous_month_button_container ">
+            {% if month == 1 %}
+                <a role="button" href="/entries/{{year|add:'-1'}}/12">
+                    <button class="change_month_button"> << {{year|add:"-1"}} / 12</button>
+                </a>
+                
+            {% else %}
+                <a  role="button"  href="/entries/{{year}}/{{month|add:'-1'}}">
+                    <button class="change_month_button"> << {{year}} / {{month|add:"-1"}} </button>
+                </a>
+            {% endif %}
 
-        <div class="float-left">
-            {% if object_list.first.date.month == 1 %}
-                <a role="button" class="btn btn-primary" href="/entries/{{object_list.first.date.year|add:'-1'}}/12"> << {{object_list.first.date.year|add:"-1"}} / 12</a>
+        </div>
+
+        <div class="next_month_button_container ">
+            {% if month == 12 %}
+                <a role="button"  href="/entries/{{year|add:'+1'}}/1">
+                    <button class="change_month_button"> {{year|add:'1'}} / 1 >></button>
+                </a>
             
             {% else %}
-                <a  role="button" class="btn btn-primary" href="/entries/{{object_list.first.date.year}}/{{object_list.first.date.month}}"> << {{object_list.first.date.year}} / {{object_list.first.date.month|add:"-1"}} </a>
+                <a  role="button"  href="/entries/{{year}}/{{month|add:+1}}">
+                    <button class="change_month_button"> {{year}} {{month|add:"1"}} >> </button>
+                </a>
             {% endif %}
         </div>
-        {% endif %}
-
-        {% if next_month %}
-        <div class="float-right">
-            {% if object_list.first.date.month == 12 %}
-                <a role="button" class="btn btn-primary" href="/entries/{{object_list.first.date.year|add:'+1'}}/1"> {{object_list.first.date.year|add:'1'}} / 1 >></a>
-            
-            {% else %}
-                <a  role="button" class="btn btn-primary" href="/entries/{{object_list.first.date.year}}/{{object_list.first.date.month|add:+1}}"> {{object_list.first.date.year}} {{object_list.first.date.month|add:"1"}} >> </a>
-            {% endif %}
-        </div>
-        {% endif %}
 
     </div>
 
-    <!-- <a href="/entries/{{previous_year}}/{{previous_month}}">
-        <button>
-            {% if previous_month %}
-            {{ previous_month|date:"F Y" }}
-            {% endif %}
-        </button>
-    </a> 
-
-    <a href="/next_month_log">
-        <button>
-            {% if next_month %}
-            {{ next_month|date:"F Y" }}
-            {% endif %}
-        </button>
-    </a>
-         -->
 
 
 </div>

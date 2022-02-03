@@ -35,6 +35,7 @@ urlpatterns = [
          name="log_by_month"),
     
     
+    
 
 
 
