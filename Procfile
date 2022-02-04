@@ -1,1 +1,1 @@
-web: gunicorn BudgetTracker.wsgi --log-file -
+"web: python BudgetTracker/manage.py runserver 0.0.0.0:\8475"
