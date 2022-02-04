@@ -35,7 +35,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # add and edit view url
-    path("entries/new", add_edit_view.new_entry_view, name="new_entry"),
+    path("entries/new", add_edit_view.CreateEntryView.as_view(), name="new_entry"),
     path("entries/edit/<pk>", add_edit_view.EntryEditView.as_view(), name="edit"),
     
     # delete view url
