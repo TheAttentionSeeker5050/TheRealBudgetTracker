@@ -46,7 +46,7 @@ urlpatterns = [
     path("entries/summary/<int:year>/<int:month>/", summary_view.SummaryMonthView.as_view(month_format="%m"), name="summary_by_month"),
     
     # entry log view
-    path("entries", entry_log_view.entry_log_view, name="entries_log"),
+    path("entries/", entry_log_view.entry_log_view, name="entries_log"),
     path('entries/<int:year>/<int:month>/',
          entry_log_view.EntryMonthLogView.as_view(month_format='%m'),
          name="log_by_month"),
