@@ -16,19 +16,28 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from entries import views as entries_views
+from entries.views import views as entries_views
 from django.conf.urls.static import static
 from django.conf import settings
+
+from entries.views import add_edit_view
+
 
 app_name = 'entries'
 
 urlpatterns = [
+    # admin url
     path('admin/', admin.site.urls),
-    path("entries/new", entries_views.new_entry_view, name="new_entry"),
+
+    # add and edit view url
+    path("entries/new", add_edit_view.new_entry_view, name="new_entry"),
+    path("entries/edit/<pk>", add_edit_view.EntryEditView.as_view(), name="edit"),
+    
+    # delete view url
+    path('entries/delete/<pk>', entries_views.EntryDeleteView.as_view(), name="delete"),
+
     path("entries/summary", entries_views.summary_view, name="summary"),
     path("entries/summary/<int:year>/<int:month>/", entries_views.SummaryMonthView.as_view(month_format="%m"), name="summary_by_month"),
-    path("entries/edit/<pk>", entries_views.EntryEditView.as_view(), name="edit"),
-    path('entries/delete/<pk>', entries_views.EntryDeleteView.as_view(), name="delete"),
     path("entries", entries_views.entry_log_view, name="entries_log"),
     path('entries/<int:year>/<int:month>/',
          entries_views.EntryMonthLogView.as_view(month_format='%m'),

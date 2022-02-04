@@ -1,26 +1,30 @@
 {% extends "parent.html" %}
+{% load static %}
 
 <!-- the title -->
 {% block title %}
     <title>New entry</title>
+    <link rel="stylesheet" href="{% static 'styles/add_edit.css' %}">
+
 {% endblock %}
 
 <!-- the main content -->
 {% block content %}
 
 <div class="container-sm">
-    <h1 class="display-2 display_mobile">Add a new entry</h1>
+    <h1 class="page_title display_mobile">Add a new entry</h1>
     
     <br>
     <!-- form content -->
-    <form method="post" >
+    <form method="post" class="form_container">
         {% csrf_token %}
-        
-        {{ form.as_p }}
+        <!-- <div > -->
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary" id="submit_button">Submit</button>
+        <!-- </div> -->
         
             
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+    </form>
     </div>
     
 {% endblock %}

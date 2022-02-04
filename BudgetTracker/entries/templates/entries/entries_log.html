@@ -5,13 +5,18 @@
 <!-- the title -->
 {% block title %}
     <title>Entries log</title>
+    <link rel="stylesheet" href="{% static 'styles/change_month_buttons.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/entry_log_table.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/entries_filters.css' %}">
+
+
 {% endblock %}
 
 <!-- the main content -->
 {% block content %}
 
 <div class="my_log_container">
-    <h1 class="display-4 display_mobile">Entries log</h1>
+    <h1 class="page_title display_mobile">Entries log</h1>
 
     <div class="filters_container">
         <h3 class="filters_title">Filters</h3>

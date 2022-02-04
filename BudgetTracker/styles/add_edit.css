@@ -1,0 +1,27 @@
+.form_container p {
+    font-size: 1.2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+}
+
+.form_container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.form_container {
+    margin: 10px;
+}
+
+#submit_button {
+    align-self: center;
+    width: 280px;
+    margin-top: 20px;
+}
+
+@media only screen and (min-width: 421px) {
+    #submit_button {
+    }
+}

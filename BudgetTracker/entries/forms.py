@@ -39,4 +39,4 @@ class EntryForm(forms.Form):
     date = forms.DateField(
         widget=forms.DateInput(format=('%d-%m-%Y'), 
                                attrs={"type":"date"}))
-    amount = forms.DecimalField(max_digits=100, decimal_places=2, label="Amount")
+    amount = forms.DecimalField(decimal_places=2)
