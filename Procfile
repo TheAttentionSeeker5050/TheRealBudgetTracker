@@ -1,1 +1,1 @@
-"web: python BudgetTracker/manage.py runserver 0.0.0.0:\8475"
+web: python BudgetTracker/manage.py runserver 0.0.0.0:$PORT
