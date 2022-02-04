@@ -16,11 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from entries.views import views as entries_views
 from django.conf.urls.static import static
 from django.conf import settings
 
 from entries.views import add_edit_view
+from entries.views import entry_log_view
+from entries.views import summary_view
+from entries.views import delete_view
+
+
+
 
 
 app_name = 'entries'
@@ -34,13 +39,16 @@ urlpatterns = [
     path("entries/edit/<pk>", add_edit_view.EntryEditView.as_view(), name="edit"),
     
     # delete view url
-    path('entries/delete/<pk>', entries_views.EntryDeleteView.as_view(), name="delete"),
+    path('entries/delete/<pk>', delete_view.EntryDeleteView.as_view(), name="delete"),
 
-    path("entries/summary", entries_views.summary_view, name="summary"),
-    path("entries/summary/<int:year>/<int:month>/", entries_views.SummaryMonthView.as_view(month_format="%m"), name="summary_by_month"),
-    path("entries", entries_views.entry_log_view, name="entries_log"),
+    # summary url
+    path("entries/summary", summary_view.summary_view, name="summary"),
+    path("entries/summary/<int:year>/<int:month>/", summary_view.SummaryMonthView.as_view(month_format="%m"), name="summary_by_month"),
+    
+    # entry log view
+    path("entries", entry_log_view.entry_log_view, name="entries_log"),
     path('entries/<int:year>/<int:month>/',
-         entries_views.EntryMonthLogView.as_view(month_format='%m'),
+         entry_log_view.EntryMonthLogView.as_view(month_format='%m'),
          name="log_by_month"),
     
     
