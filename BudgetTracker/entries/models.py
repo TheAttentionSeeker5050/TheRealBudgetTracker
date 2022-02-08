@@ -26,6 +26,7 @@ CATEGORY_CHOICES = [
 # Create your models here.
 class Entry(models.Model):
     """This is the default entry model"""
+    username = models.CharField(max_length=50, default="User")
     entry_type = models.CharField(max_length=50, choices=ENTRY_TYPE_CHOICES, default="income")
     description = models.CharField(max_length=120)
     category = models.CharField(max_length=60, choices=CATEGORY_CHOICES, default="food")

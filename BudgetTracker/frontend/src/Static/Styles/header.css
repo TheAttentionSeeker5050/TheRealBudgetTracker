@@ -1,0 +1,23 @@
+.app_header {
+    background-color: #0077B6; 
+    color: white; 
+    width: 100%;
+}
+
+.app_header ul {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 0;
+}
+
+.app_header ul li img {
+    width: 70px;
+}
+
+.app_header ul li p {
+    font-size: 2.3rem;
+}

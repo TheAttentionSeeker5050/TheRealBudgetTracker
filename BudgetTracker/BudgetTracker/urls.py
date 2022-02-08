@@ -23,7 +23,7 @@ from entries.views import add_edit_view
 from entries.views import entry_log_view
 from entries.views import summary_view
 from entries.views import delete_view
-
+from entries.views import api_view
 
 
 
@@ -51,6 +51,7 @@ urlpatterns = [
          entry_log_view.EntryMonthLogView.as_view(month_format='%m'),
          name="log_by_month"),
     
+    path('api/entries/', api_view.EntryApiView.as_view( )),
     
     
 
