@@ -1,19 +1,6 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.css';
 import "../Static/Styles/log.css"
-
-// the api rest framework
-import axios from "axios";
-
-// we get or refresh list
-const refreshList = () => {
-  axios
-    .get("/api/todos/")
-    .then((res) => this.setState({ todoList: res.data }))
-    .catch((err) => console.log(err));
-};
-
-const entry_list = []
 
 
 
