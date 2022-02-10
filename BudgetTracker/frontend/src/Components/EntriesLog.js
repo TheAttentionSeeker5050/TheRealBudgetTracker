@@ -1,6 +1,6 @@
 import React, { Component, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.css';
-import "../Static/Styles/log.css"
+import "../Static/Styles/log.css";
 
 
 
@@ -8,7 +8,7 @@ import "../Static/Styles/log.css"
 function EntryItem(props) {
     return (
     <tr key="" className="log_table_item_row">
-      <td scope="row">
+      <td>
         {props.entry_type}
       </td>
       <td >{props.description}</td>
@@ -24,7 +24,7 @@ function EntriesLog(props) {
     return (
         <div className="entries_log">
             <div className="table_div">
-            <table class="table table-hover table-stripped">
+            <table className="table table-hover table-stripped">
                 <thead>
                     <tr className="log_table_item_head">
                         <th scope="col">Entry type</th>
