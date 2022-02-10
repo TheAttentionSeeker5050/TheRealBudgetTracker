@@ -20,7 +20,7 @@ Its main features in release 1.0 include:
 
 
 ## Features that will be added in the future
-
+- Full React-Django integration
 - Add a photo of the receipt 
 - Debts, bills and push notifications
 - Asset  and investments values
