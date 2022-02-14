@@ -4,12 +4,30 @@
 
 This is a basic expense tracker app. That will get more complex as we go.
 
+# Version 1.1
+Chart options for the summary page were added. This new iteration also has custom search options for the entries, a login, register and authentication system and it only displays entries made by the user.
+
+## Actual features
+The main features in release 1.0 include:
+
+- All features of version 1.0
+- Login and register system and authentication
+- Expense and income by category js charts
+- Refined Rest API
+- Search options for entries
+- Fixed bugs on class based views
+
+## Known bugs
+
+- I still need to do the testing. I will be working in a few other projects. Feel proud of what I have done, there is still room for improvements, like adding more options, more responsiveness and a mobile option.
+
+
 
 # Version 1.0
 Consist on the minimal working program. I'm working on separating backend to frontend at this moment
 
 ## Actual features
-Its main features in release 1.0 include:
+The main features in release 1.0 include:
 
 - Add new entries in both income and expenses
 - Visualize the income and expense logs
@@ -18,6 +36,7 @@ Its main features in release 1.0 include:
 - Serving static files
 - Filter buttons
 
+# General notes
 
 ## Features that will be added in the future
 
@@ -28,23 +47,16 @@ Its main features in release 1.0 include:
 - Simulators (i.e. debt repayment, compound interest, loan amortization)
 - Real time market watch
 - Share button and download options (pdf, spreadsheets, csv)
+- Postgres database system
 
 
-## Known bugs
-
-- I'm still figuring out how to add a js chart functionality
-- The rest api is not there yet
-- This is a backend only application. In the future when I get the rest framework working I will add a React backend. Probably an android app too. We'll see.
-- As I stated the previous point, I will get rid of the django templates for something more on the front end. That will give me the freedom to make an app style website.
 
 ## Libraries, technologies and frameworks I'm using
 
-- Still using sqlite3, but I will switch to postgres later. I have done it before, I just don't want to bother
+- Still using sqlite3, but I will switch to postgres later. I have done it before, I just don't want to bother at this moment
 - I got the mock data from a website called Mockaroo
 - Django (dah!!?)
-- I will add react in the future
-- Django rest framework in which I'm working on at this moment
+- There is no need for a frontend framework, I can do fine with vanilla js on the frontend
+- Django rest framework
 - A js chart library called Charts.js
 - Django class based views
-- I am using the vanilla django templates at this moment
-- Vanilla JS for the filter buttons and whatnot, but will transform all that to react
