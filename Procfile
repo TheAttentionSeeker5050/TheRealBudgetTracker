@@ -1,1 +1,0 @@
-web: python BudgetTracker/manage.py runserver
