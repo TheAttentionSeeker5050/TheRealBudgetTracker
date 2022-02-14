@@ -56,14 +56,14 @@ function generate_chart(arr_of_objs) {
       label: 'Expenses by category',
       data: categories_sum_array,
       backgroundColor: [
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(255, 206, 86, 0.2)',
-        'rgba(75, 192, 192, 0.2)',
-        'rgba(153, 102, 255, 0.2)',
-        'rgba(50, 201, 1, 0.2)',
-        'rgba(240, 122, 223, 0.2)',
-        'rgba(255, 159, 64, 0.2)'
+        'rgba(255, 99, 132, 0.5)',
+        'rgba(54, 162, 235, 0.5)',
+        'rgba(255, 206, 86, 0.5)',
+        'rgba(75, 192, 192, 0.5)',
+        'rgba(153, 102, 255, 0.5)',
+        'rgba(50, 201, 1, 0.5)',
+        'rgba(240, 122, 223, 0.5)',
+        'rgba(255, 159, 64, 0.5)'
       ],
       hoverOffset: 4
     }]

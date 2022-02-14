@@ -38,8 +38,8 @@ function get_url_month_and_year() {
     // we process the data that we got from the apo into an expense chart
   
   
-    labels = ["allowance", "work", "investment returns"],
-    categories_sum_array = [0,0,0]
+    labels = ["allowance", "work", "investment returns", "                ", "           ", "         ", "       ", "       "],
+    categories_sum_array = [0,0,0,0,0,0,0,0]
   
     // we categorize the expenses and sum them
     arr_of_objs.forEach((x) => {  
@@ -56,9 +56,16 @@ function get_url_month_and_year() {
         label: 'Income by category',
         data: categories_sum_array,
         backgroundColor: [
-          'rgba(153, 232, 142, 1)',
-          'rgba(212, 83, 106, 1)',
-          'rgba(190, 162, 215, 1)'
+          'rgba(153, 232, 142, 0.5)',
+          'rgba(212, 83, 106, 0.5)',
+          'rgba(190, 162, 215, 0.5)',
+          'rgba(212, 83, 106, 0)',
+          'rgba(212, 83, 106, 0)',
+          'rgba(212, 83, 106, 0)',
+          'rgba(212, 83, 106, 0)',
+          'rgba(212, 83, 106, 0)'
+
+
           
         ],
         hoverOffset: 4
