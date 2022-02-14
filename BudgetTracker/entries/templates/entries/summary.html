@@ -1,0 +1,106 @@
+{% extends "parent.html" %}
+
+{% load static %}
+
+
+<!-- the title -->
+{% block title %}
+    <title>Summary</title>
+    <link rel="stylesheet" href="{% static 'styles/change_month_buttons.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/summary.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/charts.css' %}">
+
+
+{% endblock %}
+
+<!-- the main content -->
+{% block content %}
+
+<div class="container-md justify-content-md-center">
+    <h1 class="page_title display_mobile">Summary for {{month}}-{{year}}</h1>
+    <div class="summary_table_container">
+
+      <div class="row justify-content-md-center">
+        <div class="col justify-content-md-left summary_contents">
+          Income
+        </div>
+        <div class="col justify-content-md-right color_green summary_contents">
+          {{income}}
+        </div>
+        
+      </div>
+      
+      <div class="row justify-content-md-center">
+        <div class="col justify-content-md-left summary_contents">
+          Expenses
+        </div>
+        <div class="col justify-content-md-right color_red summary_contents">
+          {{expense}}
+        </div>
+        
+      </div>
+      
+      <div class="row justify-content-md-center">
+        <div class="col justify-content-md-left summary_contents">
+          Balance
+        </div>
+        <div class="col justify-content-md-right summary_contents">
+          {{balance}}
+        </div>
+        
+      </div>
+    </div>
+
+    <div class="pie_chart_container">
+
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      
+      <div class="expense_pie_chart_container ">
+        
+        <canvas id="expense_pie_chart"></canvas>
+        <script src="{% static 'javascript/expense_pie_chart.js'%}"></script>
+      </div>
+      
+      <div class="income_pie_chart_container ">
+        
+        <canvas id="income_pie_chart" ></canvas>
+        <script src="{% static 'javascript/income_pie_chart.js'%}"></script>
+      </div>
+      
+    </div>
+
+    <div class="month_change_container ">
+      <div class="previous_month_button_container ">
+          {% if month == 1 %}
+              <a role="button" href="/entries/summary/{{year|add:'-1'}}/12">
+                  <button class="change_month_button"> << {{year|add:"-1"}} / 12</button>
+              </a>
+              
+          {% else %}
+              <a  role="button"  href="/entries/summary/{{year}}/{{month|add:'-1'}}">
+                  <button class="change_month_button"> << {{year}} / {{month|add:"-1"}} </button>
+              </a>
+          {% endif %}
+
+      </div>
+
+      <div class="next_month_button_container ">
+          {% if month == 12 %}
+              <a role="button"  href="/entries/summary/{{year|add:'+1'}}/1">
+                  <button class="change_month_button"> {{year|add:'1'}} / 1 >></button>
+              </a>
+          
+          {% else %}
+              <a  role="button"  href="/entries/summary/{{year}}/{{month|add:+1}}">
+                  <button class="change_month_button"> {{year}} / {{month|add:"1"}} >> </button>
+              </a>
+          {% endif %}
+      </div>
+
+    </div>
+
+  </div>
+
+  
+
+{% endblock %}

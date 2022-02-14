@@ -1,0 +1,14 @@
+
+
+.pie_chart_container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 60px auto;
+    gap: 20px;
+}
+
+#income_pie_chart, #expense_pie_chart, .expense_pie_chart_container, .income_pie_chart_container {
+    width: 400px;
+}

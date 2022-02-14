@@ -1,0 +1,22 @@
+{% extends "parent.html" %}
+{% load static %}
+
+{% block title %}
+	<title>Login</title>
+	<link rel="stylesheet" href="{% static 'styles/user_auth.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<!--Register--> 
+<div class="container py-5 auth_container">
+	<h1>Login</h1>
+	<form method="POST">
+		{% csrf_token %}
+		{{ form.as_p }}                    
+		<button class="btn btn-primary" type="submit">Login</button>
+	</form>
+	<p class="text-center">Don't have an account?, <a href="/register">register</a> instead.</p>
+</div>
+
+{% endblock %}
