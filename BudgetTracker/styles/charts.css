@@ -1,8 +1,4 @@
 #expense_pie_chart {
-    background-color: gray;
+    background-color: transparent;
 }
 
-.not_visible_array {
-    display: none;
-    /* visibility: hidden; */
-}

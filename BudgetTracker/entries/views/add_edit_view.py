@@ -14,19 +14,35 @@ from entries.forms import EntryForm
 from django.utils import timezone
 
 from django.views.generic.edit import CreateView, UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+# from users.views import LoginRequiredMixin
 
 
 
-class CreateEntryView(CreateView):
+
+
+class CreateEntryView(LoginRequiredMixin , CreateView):
+    login_url = "/login"
+    redirect_field_name = "login"
     model = Entry
     fields = ['entry_type', "description", "category", "date", "amount"]
     template_name = 'entries/new.html'
     success_url = "/entries"
+    
+    
+    def form_valid(self, form):
+        form.instance.username = self.request.user
+        return super().form_valid(form)
 
 
-class EntryEditView(UpdateView):
+class EntryEditView(LoginRequiredMixin, UpdateView):
     """Edit an existing entry"""
+    login_url = "/login"
+    redirect_field_name = "login"
+    
     template_name = 'entries/edit.html'
     model = Entry
     fields = ['entry_type', "description", "category", "date", "amount"]
     success_url = "/entries"
+    

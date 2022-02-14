@@ -51,18 +51,24 @@
       </div>
     </div>
 
-    <div class="expense_pie_chart_container ">
-<!--       
-      <p class="not_visible_array" id="expense_categories_labels">{{expense_categories_labels}}</p>
-      <p class="not_visible_array" id="expense_categories_amounts">{{expense_categories_amounts}}</p>
-      <p class="not_visible_array" id="income_categories_labels">{{income_categories_labels}}</p>
-      <p class="not_visible_array" id="income_categories_amounts">{{income_categories_amounts}}</p> -->
+    <div class="pie_chart_container">
 
-      <canvas id="expense_pie_chart" width="300" height="300"></canvas>
       <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-      <!-- <script src="{% static 'javascript/expense_pie_chart.js'%}"></script> -->
-    </div>
       
+      <div class="expense_pie_chart_container ">
+        
+        <canvas id="expense_pie_chart"></canvas>
+        <script src="{% static 'javascript/expense_pie_chart.js'%}"></script>
+      </div>
+      
+      <div class="income_pie_chart_container ">
+        
+        <canvas id="income_pie_chart" ></canvas>
+        <script src="{% static 'javascript/income_pie_chart.js'%}"></script>
+      </div>
+      
+    </div>
+
     <div class="month_change_container ">
       <div class="previous_month_button_container ">
           {% if month == 1 %}

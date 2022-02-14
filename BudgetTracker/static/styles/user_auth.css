@@ -1,0 +1,74 @@
+.auth_container {
+    font-size: 1.5rem;
+    
+}
+
+.auth_container form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    gap: 10px;
+    /* grid-template-columns: repeat(2, 1fr 1fr);
+    grid-gap:10px ; */
+}
+
+.auth_container form p{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 10px;
+    margin-top: 10px;
+    max-width: 100vw;
+}
+
+.auth_container form p label {
+    grid-column: 1/2;
+    grid-row: 1/2;
+
+}
+
+.auth_container form p input {
+    grid-column: 2/3;
+    grid-row: 1/2;
+}
+
+.auth_container form p span {
+    grid-column: 1/3;
+    grid-row: 2/3;
+    
+}
+
+.auth_container h1 {
+    margin-bottom: 20px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.auth_container form button {
+    min-width: 350px;
+    align-self: center;
+    margin-bottom: 25px;
+    margin-top: 25px;
+
+}
+
+@media only screen and (max-width: 420px) {
+    .auth_container form p {
+        grid-template-rows: auto auto auto;
+
+    }
+
+    .auth_container form p label {
+        grid-column: 1/3;
+        grid-row: 1/2;
+    }
+    .auth_container form p input {
+        grid-column: 1/3;
+        grid-row: 2/3;
+    }
+    .auth_container form p span {
+        grid-column: 1/3;
+        grid-row: 3/4;
+    }
+}

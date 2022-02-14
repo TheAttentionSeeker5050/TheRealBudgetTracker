@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     # my own apps
     # 'entries.apps.EntriesConfig',
     "entries",
+    "users",
 ]
 
 CORS_ORIGIN_WHITELIST = [
@@ -61,6 +62,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'BudgetTracker.urls'
@@ -140,3 +142,4 @@ STATIC_ROOT = BASE_DIR
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+LOGIN_URL = 'login'

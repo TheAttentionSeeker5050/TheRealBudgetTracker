@@ -18,6 +18,9 @@ from django.utils import timezone
 from django.views.generic.dates import MonthArchiveView
 from django.views.generic.dates import MonthMixin
 
+# login required mixin
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 def summary_view(request):
     """Redirects to a basic financial summary of the person's expenses and incomes for the current month"""
     
@@ -27,16 +30,18 @@ def summary_view(request):
     return redirect("summary/{}/{}".format(this_year, this_month))
 
 
-class SummaryMonthView(MonthArchiveView):
+class SummaryMonthView(LoginRequiredMixin, MonthArchiveView):
     """We only show the summary for the month specified in the url"""
     
-    
+    login_url = "/login"
+    redirect_field_name = "login"
+
     context_object_name = "data"
     date_field = "date"
     allow_future = True
     template_name = "entries/summary.html"
     allow_empty = True
-    queryset = Entry.objects.all()
+    # queryset = Entry.objects.all()
 
     def dispatch(self, request, *args, **kwargs):
         """Here we get the values of the url tags """
@@ -54,8 +59,8 @@ class SummaryMonthView(MonthArchiveView):
         data = super(SummaryMonthView, self).get_context_data(**kwargs)
         
         
-        all_income = Entry.objects.all().filter(entry_type="Income", date__year=self.year, date__month=self.month)
-        all_expense = Entry.objects.all().filter(entry_type="Expense", date__year=self.year, date__month=self.month)
+        all_income = Entry.objects.all().filter(username=self.request.user, entry_type="Income", date__year=self.year, date__month=self.month)
+        all_expense = Entry.objects.all().filter(username=self.request.user, entry_type="Expense", date__year=self.year, date__month=self.month)
 
         total_income=0
         total_expense=0
@@ -79,4 +84,7 @@ class SummaryMonthView(MonthArchiveView):
         data["year"] = self.year
         
         return data
+
+    def get_queryset(self):
+        return Entry.objects.filter(username=self.request.user)
 

@@ -14,10 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 from django.conf.urls.static import static
 from django.conf import settings
+from rest_framework import routers
 
 from entries.views import add_edit_view
 from entries.views import entry_log_view
@@ -25,6 +26,11 @@ from entries.views import summary_view
 from entries.views import delete_view
 from entries.views import api_view
 
+from users.views import UserLoginView, SignUpView, LogoutView
+
+router = routers.DefaultRouter()
+router.register(r'entries/$', api_view.EntryApiViewSet,  basename='get_entry_data')
+# router.register(r'entries/{username}/', api_view.EntryApiView.as_view())
 
 
 
@@ -51,10 +57,22 @@ urlpatterns = [
          entry_log_view.EntryMonthLogView.as_view(month_format='%m'),
          name="log_by_month"),
     
-    path('api/entries/', api_view.EntryApiView.as_view( )),
-    
-    
+    # path('api/entries/', api_view.EntryApiView.as_view( )),
+    path('api_call/', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path("api/entries/", api_view.EntryList.as_view(), name="entries_api_call"),
+    path("api/entries/<int:year>/<int:month>/", api_view.EntryListByYear.as_view(), name="entries_api_call"),
 
+
+
+
+    # home page 
+    # path("", views.homepage, name="homepage"),
+    
+    # user authentication
+    path("login", UserLoginView.as_view(), name="login"),
+    path("register", SignUpView.as_view(), name="register"),
+    path("logout", LogoutView.as_view(), name= "logout"),
 
 
 

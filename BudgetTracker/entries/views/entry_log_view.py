@@ -1,8 +1,13 @@
 # view related imports
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.http import HttpResponseRedirect
-from django.shortcuts import redirect
+
+
+# login required
+# from users.views import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 # import the models
 from entries.models import Entry
@@ -13,19 +18,26 @@ from entries.forms import EntryForm
 # import time functions
 from django.utils import timezone
 
-
 def entry_log_view(request):
     this_month = timezone.now().month
     this_year = timezone.now().year
-    return redirect("entries/{}/{}".format(this_year, this_month))
+
+    if request.user.is_authenticated:
+
+        return redirect("entries/{}/{}".format(this_year, this_month))
+    else:
+        return redirect("login")
    
 
 
 from django.views.generic.dates import MonthArchiveView
 from django.views.generic.dates import MonthMixin
 
-class EntryMonthLogView(MonthArchiveView, MonthMixin):
-    queryset = Entry.objects.all()
+class EntryMonthLogView(LoginRequiredMixin, MonthArchiveView, MonthMixin):
+    """Displays all the logs made by the current user in a specific month"""
+    login_url = "/login"
+    redirect_field_name = "login"
+    
     date_field = "date"
     allow_future = True
     template_name = "entries/entries_log.html"
@@ -48,3 +60,5 @@ class EntryMonthLogView(MonthArchiveView, MonthMixin):
         data["year"] = self.year
         return data
 
+    def get_queryset(self):
+        return Entry.objects.filter(username=self.request.user)

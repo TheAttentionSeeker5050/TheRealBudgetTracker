@@ -1,70 +1,88 @@
-// first we import our random color generator
 
-function generate_random_color() {
-    // we generate a random color
-    let maxVal = 0xFFFFFF; // 16777215
-    let randomNumber = Math.random() * maxVal; 
-    randomNumber = Math.floor(randomNumber);
-    randomNumber = randomNumber.toString(16);
-    let randColor = randomNumber.padStart(6, 0); 
-    return randColor  
-}
-
-function replace_quotes(string) {
-    str = string.replace(/'/g, '"')
-    return str
+// first we get month and year
+function get_url_month_and_year() {
+  const splited_url_string = window.location.pathname.split("/");
+  const year =  splited_url_string[3]
+  const month = splited_url_string[4]
+  return [year, month]
 }
 
 
-console.log(typeof(document.getElementById("expense_categories_labels").innerHTML))
+const exp_year_month_array = get_url_month_and_year() // returns an array with position 0 as year and position 1 as month
 
-// we get the income and expense label array
-const expense_categories_labels_string = replace_quotes(document.getElementById("expense_categories_labels").innerHTML)
-console.log(expense_categories_labels_string)
-console.log(typeof(expense_categories_labels_string))
-const expense_categories_labels = JSON.parse(expense_categories_labels_string)
+// now we fetch data from our url
+
+var url = `http://127.0.0.1:8000/api/entries/${exp_year_month_array[0]}/${exp_year_month_array[1]}/`
 
 
+function get_from_api(url, callback) {
+  // we fetch data from the API
+  fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      obj = data
+    })
+    .then(() => callback(obj))
+    .catch(err => console.log(err))
+}
+
+
+  
+get_from_api(url, generate_chart)
 
 
 
-// console.log(expense_categories_labels)
-// JSON.parse(document.getElementById("expense_categories_labels").innerHTML)
+function generate_chart(arr_of_objs) {
+  // we process the data that we got from the apo into an expense chart
 
-const income_categories_labels = JSON.parse(document.getElementById("income_categories_labels").innerHTML)
 
-// we get the income and expense amounts array
+  labels = ["food", "housing", "transportation", "fun & entertainment", "investing", "interest & debts"],
+  categories_sum_array = [0,0,0,0,0,0,0,0]
 
-const expense_categories_amounts = JSON.parse(document.getElementById("expense_categories_amounts").innerHTML)
-const income_categories_amounts = JSON.parse(document.getElementById("income_categories_amounts").innerHTML)
+  // we categorize the expenses and sum them
+  arr_of_objs.forEach((x) => {
+    console.log(x)
 
-console.log(expense_categories_amounts)
-console.log(generate_random_color())
+    label_index = labels.indexOf(x.category)
+    if (label_index != -1) {
+      categories_sum_array[label_index] = categories_sum_array[label_index] + parseFloat(x.amount)
+    }
+  })
 
-const data_expense = {
-    labels: expense_categories_labels,
+  // this is the json object that we will feed into our chart as data
+  var data_expense = {
+    labels:labels,  // ["Food", "Housing", "Transportation", "Fun & Entertainment", "Investing", "Interest & Debts"],
     datasets: [{
       label: 'Expenses by category',
-      data: expense_categories_amounts,
+      data: categories_sum_array,
       backgroundColor: [
-        generate_random_color(),
-        generate_random_color(),
-        generate_random_color(),
-        generate_random_color(),
-        generate_random_color(),
-        generate_random_color()
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(50, 201, 1, 0.2)',
+        'rgba(240, 122, 223, 0.2)',
+        'rgba(255, 159, 64, 0.2)'
       ],
       hoverOffset: 4
     }]
-  };
+  };    
 
-    
-const expense_config = {
+  // config file containing the chart type and the data json object
+  const expense_config = {
     type: 'pie',
     data: data_expense,
-    };    
+  };
 
-const myExpenseChart = new Chart(
+  // we build the expense chart and add the config file
+  const myExpenseChart = new Chart(
     document.getElementById('expense_pie_chart'),
     expense_config
   );
+}
+
+
+    
+
+
